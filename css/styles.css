@@ -301,3 +301,87 @@ body.sticky-bottom-footer {
     opacity: .8;
 }
 
+.news .news-container {
+    background: var(--global-code-bg-color);
+    border: 1px solid var(--global-border-color);
+    border-radius: var(--global-radius-medium);
+    padding: 1rem;
+    max-height: 240px;
+    overflow-y: auto;
+}
+
+.news .news-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.news .news-container::-webkit-scrollbar-track {
+    background: var(--global-code-bg-color);
+    border-radius: 3px;
+}
+
+.news .news-container::-webkit-scrollbar-thumb {
+    background: var(--global-border-color);
+    border-radius: 3px;
+}
+
+.news .news-container::-webkit-scrollbar-thumb:hover {
+    background: var(--global-theme-color);
+}
+
+.news .news-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.news .news-list .news-item {
+    margin-bottom: .75rem;
+    line-height: 1.6;
+    position: relative;
+    padding-left: 1rem;
+}
+
+.news .news-list .news-item:last-child {
+    margin-bottom: 0;
+}
+
+.news .news-list .news-item::before {
+    content: "•";
+    color: var(--global-theme-color);
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.news .news-list .news-item .news-date {
+    color: var(--global-text-color-light);
+    font-weight: 500;
+    font-size: .9rem;
+    font-family: "Source Code Pro", "Menlo", "Monaco", "Courier New", monospace;
+    margin-right: .5rem;
+}
+
+.news .news-list .news-item .news-content {
+    color: var(--global-text-color);
+}
+
+.news .news-list .news-item .news-content .news-title {
+    color: var(--global-theme-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.news .news-list .news-item .news-content .news-title:hover {
+    text-decoration: underline;
+}
+
+.news .news-list .news-item .news-content a {
+    color: var(--global-theme-color);
+    text-decoration: none;
+}
+
+.news .news-list .news-item .news-content a:hover {
+    text-decoration: underline;
+}
+
