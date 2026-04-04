@@ -23,6 +23,44 @@
     --global-transition: all 0.3s ease;
 }
 
+/* :root .fa-sun {
+    display: none;
+}
+
+:root .fa-moon {
+    padding-left: 10px;
+    padding-top: 12px;
+    display: block;
+} */
+
+/* html[data-theme="dark"] {
+    --global-bg-color: #002b36;
+    --global-sidebar-bg-color: #001a21;
+    --global-code-bg-color: #002b36;
+    --global-text-color: #ffffff;
+    --global-text-color-light: #b3c5c7;
+    --global-theme-color: #2aa198;
+    --global-hover-color: #859900;
+    --global-footer-bg-color: #073642;
+    --global-footer-text-color: #93a1a1;
+    --global-footer-link-color: #ffffff;
+    --global-distill-app-color: #b3c5c7;
+    --global-card-bg: #073642;
+    --global-border-color: #657b83;
+    --global-theme-color-rgb: 42, 161, 152;
+    --global-shadow-light: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --global-shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+html[data-theme="dark"] .fa-sun {
+    padding-left: 10px;
+    padding-top: 12px;
+    display: block;
+}
+
+html[data-theme="dark"] .fa-moon {
+    display: none;
+} */
 
 body {
     padding-bottom: 70px;
@@ -42,10 +80,6 @@ body.sticky-bottom-footer {
     max-width: 800px;
 }
 
-.profile img {
-    width: 100%;
-}
-
 .single-page-layout {
     margin: 0;
     padding: 0;
@@ -61,8 +95,7 @@ body.sticky-bottom-footer {
     height: 100vh;
     background: var(--global-sidebar-bg-color);
     z-index: 1000;
-    overflow: hidden;
-
+    overflow-y: hidden;
 }
 
 @media (max-width: 768px) {
@@ -73,6 +106,9 @@ body.sticky-bottom-footer {
 
     .sidebar.open {
         transform: translateX(0);
+    }
+    .sidebar {
+        overflow-y: auto;   /* Allow scroll ONLY on mobile */
     }
 }
 
@@ -125,13 +161,6 @@ body.sticky-bottom-footer {
     margin: .25rem 0;
 }
 
-.sidebar-profile .sidebar-description {
-    font-size: 1rem;
-    color: #2aa198;
-    font-style: italic;
-    line-height: 1.4;
-}
-
 .sidebar-nav {
     flex: 1;
     margin-bottom: 2rem;
@@ -160,7 +189,7 @@ body.sticky-bottom-footer {
 }
 
 .sidebar-nav .nav-link:hover {
-    background: rgba(var(--global-theme-color), 0.1);
+    background: rgba(var(--global-theme-color-rgb), 0.1);
     color: var(--global-theme-color);
     transform: translateX(2px);
 }
@@ -193,23 +222,7 @@ body.sticky-bottom-footer {
 
 .sidebar-social .contact-icons a:hover {
     color: var(--global-theme-color);
-    background: rgba(var(--global-theme-color), 0.1);
-    transform: translateY(-2px);
-}
-
-.sidebar-social>a {
-    color: var(--global-text-color-light);
-    font-size: 1.5rem !important;
-    transition: all .3s ease;
-    padding: .5rem;
-    margin: 0 .5rem;
-    border-radius: 50%;
-    display: inline-block;
-}
-
-.sidebar-social>a:hover {
-    color: var(--global-theme-color);
-    background: rgba(var(--global-theme-color), 0.1);
+    background: rgba(var(--global-theme-color-rgb), 0.1);
     transform: translateY(-2px);
 }
 
@@ -358,22 +371,12 @@ body.sticky-bottom-footer {
     color: var(--global-text-color-light);
     font-weight: 500;
     font-size: .9rem;
-    font-family: "Source Code Pro", "Menlo", "Monaco", "Courier New", monospace;
+    font-family: "Source Code Pro", "Menlo", monospace;
     margin-right: .5rem;
 }
 
 .news .news-list .news-item .news-content {
     color: var(--global-text-color);
-}
-
-.news .news-list .news-item .news-content .news-title {
-    color: var(--global-theme-color);
-    text-decoration: none;
-    font-weight: 500;
-}
-
-.news .news-list .news-item .news-content .news-title:hover {
-    text-decoration: underline;
 }
 
 .news .news-list .news-item .news-content a {
@@ -383,5 +386,136 @@ body.sticky-bottom-footer {
 
 .news .news-list .news-item .news-content a:hover {
     text-decoration: underline;
+}
+
+.publications .bibliography,
+.projects .bibliography {
+    list-style: none;
+    padding: 0;
+}
+
+.publications .bibliography li,
+.projects .bibliography li {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed var(--global-border-color);
+}
+
+.publications .bibliography li:last-child,
+.projects .bibliography li:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
+}
+
+
+.link1 {
+    color: #61892f;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.link1:visited {
+    color: #61892f;
+}
+
+.link1:hover {
+    text-decoration: underline;
+}
+
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+.mobile-menu-toggle {
+    display: none;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1001;
+    background: var(--global-card-bg);
+    border: 1px solid var(--global-border-color);
+    border-radius: 6px;
+    padding: .75rem;
+    color: var(--global-text-color);
+    cursor: pointer;
+    box-shadow: var(--global-shadow-light);
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: block;
+    }
+}
+
+.btn-primary {
+    background: var(--global-theme-color);
+    border: 1px solid var(--global-theme-color);
+    color: #fff;
+    padding: .75rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 500;
+    transition: all .3s ease;
+}
+
+.btn-primary:hover {
+    background: var(--global-hover-color);
+    border-color: var(--global-hover-color);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+}
+
+.resume-container .resume-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.resume-container .btn {
+    padding: .75rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    transition: all .3s ease;
+    border: 2px solid var(--global-theme-color);
+}
+
+.resume-container .btn i {
+    font-size: .9rem;
+}
+
+.resume-container .btn-outline-primary {
+    background: transparent;
+    color: var(--global-theme-color);
+}
+
+.resume-container .btn-outline-primary:hover {
+    background: var(--global-theme-color);
+    color: #fff;
+}
+
+.resume-container .btn-primary {
+    background: var(--global-theme-color);
+    color: #fff;
+}
+
+body {
+    font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+    font-size: 1rem;
+}
+
+a {
+    transition: var(--global-transition);
 }
 
